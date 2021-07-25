@@ -1,4 +1,4 @@
-module github.com/14km/gin-til
+module github.com/happiness-daily-tli/happiness-daily-api
 
 go 1.16
 

@@ -1,5 +1,8 @@
 package contents
 
-func models() {
+import "gorm.io/gorm"
 
+type User struct {
+	gorm.Model
+	Contents string
 }

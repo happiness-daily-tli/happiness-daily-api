@@ -16,13 +16,18 @@ var DB *gorm.DB
 func Init() *gorm.DB {
 
 	fmt.Println("DB OPEN")
-	//db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
-	//db, err := gorm.Open("sqlite3", "./../gorm.db")
-	//if err != nil {
-	//	fmt.Println("db err: (Init) ", err)
-	//}
+	db, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{})
+
+	if err != nil {
+		fmt.Println("db err: (Init) ", err)
+	}
+
+	//sqlDB, err := db.DB()
+	//sqlDB.SetMaxIdleConns(10)
+
 	//db.DB().SetMaxIdleConns(10)
-	////db.LogMode(true)
-	//DB = db
-	//return DB
+
+	//db.LogMode(true)
+	DB = db
+	return DB
 }
