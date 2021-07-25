@@ -2,7 +2,7 @@ package common
 
 import (
 	"fmt"
-	_ "fmt"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
 
@@ -12,8 +12,11 @@ type Database struct {
 
 var DB *gorm.DB
 
-// gorm를 사용하여 DB를 Open 한다.
+// Init gorm 를 사용하여 DB를 Open 한다.
 func Init() *gorm.DB {
+
+	fmt.Println("DB OPEN")
+	//db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	//db, err := gorm.Open("sqlite3", "./../gorm.db")
 	//if err != nil {
 	//	fmt.Println("db err: (Init) ", err)
