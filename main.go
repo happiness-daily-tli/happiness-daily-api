@@ -3,7 +3,10 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/happiness-daily-tli/happiness-daily-api/common"
-	"github.com/happiness-daily-tli/happiness-daily-api/users"
+	_ "github.com/happiness-daily-tli/happiness-daily-api/entity/contents"
+	_ "github.com/happiness-daily-tli/happiness-daily-api/entity/users"
+
+	//"github.com/happiness-daily-tli/happiness-daily-api/users"
 	"gorm.io/gorm"
 )
 
@@ -16,7 +19,9 @@ func main() {
 	r.Use(gin.Logger())
 
 	v1 := r.Group("/api/v1")
-	users.UsersRegister(v1.Group("/users"))
+	v1.Group("/contents")
+
+	//users.UsersRegister(v1.Group("/users"))
 
 	r.GET("/ping", func(context *gin.Context) {
 		context.JSON(200, gin.H{
@@ -30,11 +35,13 @@ func main() {
 	}
 }
 
-//func Migrate(db *gorm.DB) {
-//	users.AutoMigrate()
-//	db.AutoMigrate(&articles.ArticleModel{})
-//	db.AutoMigrate(&articles.TagModel{})
-//	db.AutoMigrate(&articles.FavoriteModel{})
-//	db.AutoMigrate(&articles.ArticleUserModel{})
-//	db.AutoMigrate(&articles.CommentModel{})
-//}
+func Migrate(db *gorm.DB) {
+	//AutoMigrate(db *gorm.DB)
+
+	//	users.AutoMigrate()
+	//	db.AutoMigrate(&articles.ArticleModel{})
+	//	db.AutoMigrate(&articles.TagModel{})
+	//	db.AutoMigrate(&articles.FavoriteModel{})
+	//	db.AutoMigrate(&articles.ArticleUserModel{})
+	//	db.AutoMigrate(&articles.CommentModel{})
+}

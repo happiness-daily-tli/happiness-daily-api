@@ -1,8 +1,10 @@
-package users
+package entity
 
-import (
-	"github.com/happiness-daily-tli/happiness-daily-api/common"
-)
+import "gorm.io/gorm"
+
+func AutoMigrate(db *gorm.DB) {
+	db.AutoMigrate(&Contents{})
+}
 
 // Migrate the schema of database if needed
 //func AutoMigrate() {
