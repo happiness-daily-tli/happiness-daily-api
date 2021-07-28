@@ -16,18 +16,19 @@ var DB *gorm.DB
 func Init() *gorm.DB {
 
 	fmt.Println("DB OPEN")
-	db, err := gorm.Open(sqlite.Open("gorm.db"), &gorm.Config{})
+	db, err := gorm.Open(sqlite.Open("happiness_db"), &gorm.Config{})
 
 	if err != nil {
 		fmt.Println("db err: (Init) ", err)
 	}
 
-	//sqlDB, err := db.DB()
-	//sqlDB.SetMaxIdleConns(10)
-
-	//db.DB().SetMaxIdleConns(10)
+	sqlDB, err := db.DB()
+	sqlDB.SetMaxIdleConns(10)
 
 	//db.LogMode(true)
-	DB = db
+	return db
+}
+
+func GetDB() *gorm.DB {
 	return DB
 }

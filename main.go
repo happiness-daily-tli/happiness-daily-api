@@ -5,6 +5,7 @@ import (
 	"github.com/happiness-daily-tli/happiness-daily-api/common"
 	_ "github.com/happiness-daily-tli/happiness-daily-api/entity/contents"
 	_ "github.com/happiness-daily-tli/happiness-daily-api/entity/users"
+	"github.com/happiness-daily-tli/happiness-daily-api/routes"
 
 	//"github.com/happiness-daily-tli/happiness-daily-api/users"
 	"gorm.io/gorm"
@@ -13,15 +14,13 @@ import (
 func main() {
 	db := common.Init()
 	Migrate(db)
-	defer db.Close()
+	//defer db.
 
 	r := gin.Default()
 	r.Use(gin.Logger())
 
 	v1 := r.Group("/api/v1")
-	v1.Group("/contents")
-
-	//users.UsersRegister(v1.Group("/users"))
+	routes.RouteRegister(v1.Group("/contents"))
 
 	r.GET("/ping", func(context *gin.Context) {
 		context.JSON(200, gin.H{
@@ -36,7 +35,7 @@ func main() {
 }
 
 func Migrate(db *gorm.DB) {
-	//AutoMigrate(db *gorm.DB)
+	//db := common.GetDB()
 
 	//	users.AutoMigrate()
 	//	db.AutoMigrate(&articles.ArticleModel{})

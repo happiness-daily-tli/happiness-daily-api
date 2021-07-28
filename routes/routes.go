@@ -1,6 +1,16 @@
 package routes
 
-//func UsersRegister(router *gin.RouterGroup) {
-//	router.POST("/", UsersRegistration)
-//	router.POST("/login", UsersLogin)
-//}
+import (
+	"fmt"
+	"github.com/gin-gonic/gin"
+)
+
+func RouteRegister(router *gin.RouterGroup) {
+	router.POST("/", func(context *gin.Context) {
+		fmt.Println(context.RemoteIP())
+	})
+
+	router.POST("/login", func(context *gin.Context) {
+		fmt.Println(context.RemoteIP())
+	})
+}
